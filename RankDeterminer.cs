@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal;
 using System;
-using Unity.VisualScripting.Dependencies.Sqlite;
+
 
 public class RankDeterminer: MonoBehaviour
 {
@@ -94,6 +94,33 @@ public class RankDeterminer: MonoBehaviour
                 {
                     rank.text= "USER: " + temprank + "\nADMIN: I thought i told you to remove gibberish at the end! \nADMIN: You're fired!";
                 }
+        else if(input == "This is a super secret" || input == "THIS IS A SUPER SECERT" || input == "this is a super secret")
+                {
+                    rank.text= "USER: " + temprank + "\nADMIN: Where'd you find that message? good work! \nADMIN: you'll get a promotion after your vacation, for finding the secret ending."; 
+                }
+
+        else if (input == "vqc wfkjh vrtq pb drboezf yq kvn btmh, cacs'h qbv? ioq = zfjdzs zfosnbp -.- . -.-- = -- --- .-. ... . fmefny lckyca dwedvk 13,11,15,43,11,42 .---- -.... .---- ..... .---- ..--- ..--- ..... ..--- ----. ..--- .---- .---- ----.")
+                {
+                    //note: 
+                    /*
+                    1 = .----
+                    2 = ..---
+                    3 = ...--
+                    4 = ....-
+                    5 = .....
+                    6 = -....
+                    7 = --...
+                    8 = ---..
+                    9 = ----.
+                    0 = -----
+                    */
+
+                    //hello ludum dare code readers.
+                    //play the game properly
+                    //then read the code.
+
+                    rank.text= "USER: " + temprank + "\nADMIN:do you even know what this one says? \nADMIN: consider it a final challenge to figure it out.";
+                }
         
         else if (input == "" || input == null)
                 {
@@ -101,7 +128,7 @@ public class RankDeterminer: MonoBehaviour
                 }
         else
         {
-            rank.text =  "USER: " + temprank + "\nADMIN: That looks like gibberish.\n ADMIN: remove any cipher names or keys during translation, they're only there to tell you what to do. \nADMIN: get back to the office and try again!";
+            rank.text =  "USER: " + temprank + "\nADMIN: That looks like gibberish.\n ADMIN: remove any cipher names or keys during translation, they're only there to tell you what to do. \nADMIN:also, use spaces between words! \nADMIN: whenever possible, decode everything. \nADMIN: get back to the office and try again!";
         }
             
                 
