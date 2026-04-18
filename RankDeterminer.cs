@@ -1,0 +1,142 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
+using System;
+using Unity.VisualScripting.Dependencies.Sqlite;
+
+public class RankDeterminer: MonoBehaviour
+{
+
+    //public GameObject player;
+    public TMP_Text rank;
+
+    //SetSavedVariable SScore;
+    string input;
+    string ranktext = "NO RANK";
+    string temprank;    // Start is called before the first frame update
+    public static RankDeterminer Instance;
+    public Gamehandler GH;
+
+
+    private void Awake(){
+    
+        //code for making sure there are no copies
+        //i forget how it is supposed to work
+        // so  i'm disabing it for now
+
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        
+    
+    }
+    void Start()
+    {
+        
+
+       // PlayerController playerController = player.GetComponent<PlayerController>();
+
+
+       // score = playerController.getscore();
+
+        if (rank == null)
+        {
+            if (GameObject.Find("RankText").GetComponent<TMP_Text>() != null)
+            {
+                rank = GameObject.Find("RankText").GetComponent<TMP_Text>();
+            }
+        }
+
+        if(GH == null)
+        {
+            
+        }
+        //might need to move to update
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+        
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("SolvingScene"))
+        {
+            if (rank == null)
+            {
+                if (GameObject.Find("RankText").GetComponent<TMP_Text>() != null)
+                {
+                    rank = GameObject.Find("RankText").GetComponent<TMP_Text>();
+                }
+                else
+                {
+                    //return;
+                }
+            }
+            else
+            {
+        
+            if (input == "thanks for playing" || input == "Thanks for playing" || input == "THANKS FOR PLAYING")
+        {
+        
+            rank.text = "USER: " + temprank + "\nADMIN: Looks right to me! why don't you go on that vacation now?";
+        }else if (input == "THANK YOU FOR PLAYING CZA = AAAAAAA NGSMZN CQYEPD MLCP HBJZDIIE" || input == "thank you for playing cza = aaaaaaa ngsmzn cqyepd mlcp hbjzdiie")
+                {
+                    rank.text= "USER: " + temprank + "\nADMIN: I thought i told you to remove gibberish at the end! \nADMIN: You're fired!";
+                }
+        
+        else if (input == "" || input == null)
+                {
+                    rank.text = "ADMIN: ??? \n ADMIN: you forgot to send anything at all!  you're fired!";
+                }
+        else
+        {
+            rank.text =  "USER: " + temprank + "\nADMIN: That looks like gibberish.\n ADMIN: remove any cipher names or keys during translation, they're only there to tell you what to do. \nADMIN: get back to the office and try again!";
+        }
+            
+                
+            
+                
+                
+
+
+            }
+        }
+    }
+
+public void gotonextscene()
+    {
+        input = GH.getinput();
+        Debug.Log(input);
+        temprank = input;
+        SceneManager.LoadScene(2);
+
+    }
+
+/*  void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject == player)
+        {
+        
+            score = player.GetComponent<PlayerController>().getscore();
+            SceneManager.LoadScene(2);
+        }
+
+    
+        
+        //move to finale screen
+
+
+        //SScore = score;
+    }*/
+}
