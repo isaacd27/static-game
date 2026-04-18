@@ -141,12 +141,12 @@ public class RankDeterminer: MonoBehaviour
         }
     }
 
-public void gotonextscene()
+public void gotonextscene(int sceneID)
     {
         input = GH.getinput();
         Debug.Log(input);
         temprank = input;
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(sceneID);
 
     }
 
